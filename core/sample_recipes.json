@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Tomato Lettuce Salad",
+    "ingredients": ["tomato", "lettuce", "olive oil"]
+  },
+  {
+    "title": "Cheese Omelette",
+    "ingredients": ["eggs", "cheese", "butter"]
+  },
+  {
+    "title": "Yogurt Cucumber Dip",
+    "ingredients": ["yogurt", "cucumber", "salt"]
+  }
+]

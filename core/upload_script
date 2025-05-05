@@ -1,0 +1,26 @@
+import openai
+import base64
+
+# Set up OpenAI client
+client = openai.OpenAI(api_key="sk-proj-yKBE9TUsXIQuSUx_CS8a90jekHM0e0CFB8MBUA6Nz_qUkitUA5fzJIMADjznRKHIBTuwDefvgT3B1bkFJQzEHEM5xux_MzUaHS_gT7RgJw3STQiNiW_Im6BksNk9UTkYep9wivnez-HNdaEA_M4BF03W2AA")
+
+# Read the image and encode it in base64
+image_path = "C:/Users/mistr/Documents/projectpractice/fridge.jpg"
+with open(image_path, "rb") as image_file:
+    base64_image = base64.b64encode(image_file.read()).decode("utf-8")
+
+# Ask GPT-4 Vision to identify items in the image
+vision_response = client.chat.completions.create(
+    model="gpt-4-vision-preview",
+    messages=[
+        {"role": "user", "content": [
+            {"type": "text", "text": "This is a photo of a fridge. List the food items you can identify."},
+            {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}}
+        ]}
+    ],
+    max_tokens=300
+)
+
+# Extract and print detected items
+fridge_items = vision_response.choices[0].message.content
+print("\nDetected items in fridge:\n", fridge_items)
